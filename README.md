@@ -1,4 +1,4 @@
-# FastShuffle.luau
+# FastShuffle
 
 A table shuffle module, with designed to be fast in roblox luau.
 

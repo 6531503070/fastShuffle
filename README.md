@@ -35,23 +35,23 @@ local Shuffled_3 = FastShuffle(ArrayOfNumbers, Random.new(12345))
 
 # Benchmark
 ```lua
-    local function Benchmark(TestFunction: () -> (), SymbolFunction: string): number
-        local elapsed = os.clock()
-        TestFunction()
-        print(`@{SymbolFunction}, took: {os.clock() - elapsed}s`)
-        return elapsed
-    end
+local function Benchmark(TestFunction: () -> (), SymbolFunction: string): number
+    local elapsed = os.clock()
+    TestFunction()
+    print(`@{SymbolFunction}, took: {os.clock() - elapsed}s`)
+    return elapsed
+end
 
-    local Randomizer = Random.new()
-    local RobloxShuffle = Randomizer.Shuffle
+local Randomizer = Random.new()
+local RobloxShuffle = Randomizer.Shuffle
 
-    -- RobloxShuffle // Random.new():Shuffle()
-    Benchmark(function()
-        RobloxShuffle(Randomizer, ArrayOfNumbers)
-    end, "RobloxShuffle") -- @RobloxShuffle, took: 0.027607400028500706s
+-- RobloxShuffle // Random.new():Shuffle()
+Benchmark(function()
+    RobloxShuffle(Randomizer, ArrayOfNumbers)
+end, "RobloxShuffle") -- @RobloxShuffle, took: 0.027607400028500706s
 
-    -- FastShuffle
-    Benchmark(function()
-        FastShuffle(ArrayOfNumbers)
-    end, "FastShuffler") -- @FastShuffler, took: 0.007486000016797334s
+-- FastShuffle
+Benchmark(function()
+    FastShuffle(ArrayOfNumbers)
+end, "FastShuffler") -- @FastShuffler, took: 0.007486000016797334s
 ```

@@ -19,7 +19,7 @@ local FastShuffle = require(script.FastShuffle)
 ## sample ArrayOfNumbers 1M Elements
 ```lua
 local ArrayOfNumbers = {}
-for Index = 1, 1_000_000 do
+for Index = 1, 100_000 do
     ArrayOfNumbers[Index] = Index
 end
 ```
@@ -35,9 +35,11 @@ local Shuffled_3 = FastShuffle(ArrayOfNumbers, Random.new(12345))
 
 # Benchmark
 ```lua
-local function Benchmark(TestFunction: () -> (), SymbolFunction: string): number
+local function Benchmark(TestFunction: () -> (), SymbolFunction: string, Simulation: number): number
     local elapsed = os.clock()
-    TestFunction()
+    for _ = 1, Simulation do
+        TestFunction()
+    end
     print(`@{SymbolFunction}, took: {os.clock() - elapsed}s`)
     return elapsed
 end
@@ -48,10 +50,10 @@ local RobloxShuffle = Randomizer.Shuffle
 -- RobloxShuffle // Random.new():Shuffle()
 Benchmark(function()
     RobloxShuffle(Randomizer, ArrayOfNumbers)
-end, "RobloxShuffle") -- @RobloxShuffle, took: 0.027607400028500706s
+end, "RobloxShuffle", 10) -- @RobloxShuffle, took: 0.014617400000133784s
 
 -- FastShuffle
 Benchmark(function()
     FastShuffle(ArrayOfNumbers)
-end, "FastShuffler") -- @FastShuffler, took: 0.007486000016797334s
+end, "FastShuffler", 10) -- @FastShuffler, took: 0.006270200000017212s
 ```

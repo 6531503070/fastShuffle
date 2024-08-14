@@ -16,7 +16,7 @@ unlike roblox [Random.new():Shuffle()](https://create.roblox.com/docs/reference/
 local FastShuffle = require(script.FastShuffle)
 ```
 
-## sample ArrayOfNumbers 1M Elements
+## sample ArrayOfNumbers 100k Elements
 ```lua
 local ArrayOfNumbers = {}
 for Index = 1, 100_000 do

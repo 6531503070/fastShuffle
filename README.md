@@ -1,4 +1,4 @@
-# FastShuffle
+# fastShuffle
 
 A table shuffle module, with designed to be fast in roblox luau.
 
@@ -11,9 +11,9 @@ unlike roblox [Random.new():Shuffle()](https://create.roblox.com/docs/reference/
 
 # Exmaple
 
-## import FastShuffle module
+## import fastShuffle module
 ```lua
-local FastShuffle = require(script.FastShuffle)
+local fastShuffle = require(script.fastShuffle)
 ```
 
 ## sample ArrayOfNumbers 100k Elements
@@ -24,13 +24,13 @@ for Index = 1, 100_000 do
 end
 ```
 
-## FastShuffle(array: T & {}, seed: (number | Random)?) -> T
+## fastShuffle(array: T & {}, seed: (number | Random)?) -> T
 ```lua
 -- Shuffle with default random
-local Shuffled_1 = FastShuffle(ArrayOfNumbers) 
+local Shuffled_1 = fastShuffle(ArrayOfNumbers) 
 -- Shuffle with custom random
-local Shuffled_2 = FastShuffle(ArrayOfNumbers, 12345)
-local Shuffled_3 = FastShuffle(ArrayOfNumbers, Random.new(12345))
+local Shuffled_2 = fastShuffle(ArrayOfNumbers, 12345)
+local Shuffled_3 = fastShuffle(ArrayOfNumbers, Random.new(12345))
 ```
 
 # Benchmark
@@ -52,8 +52,8 @@ Benchmark(function()
     RobloxShuffle(Randomizer, ArrayOfNumbers)
 end, "RobloxShuffle", 10) -- @RobloxShuffle, took: 0.014617400000133784s
 
--- FastShuffle
+-- fastShuffle
 Benchmark(function()
-    FastShuffle(ArrayOfNumbers)
-end, "FastShuffler", 10) -- @FastShuffler, took: 0.006270200000017212s
+    fastShuffle(ArrayOfNumbers)
+end, "fastShuffler", 10) -- @fastShuffler, took: 0.006270200000017212s
 ```

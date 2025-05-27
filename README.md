@@ -18,24 +18,24 @@ local fastShuffle = require(script.fastShuffle)
 
 ## sample ArrayOfNumbers 100k Elements
 ```lua
-local ArrayOfNumbers = {}
-for Index = 1, 100_000 do
-    ArrayOfNumbers[Index] = Index
+local arrayOfNumbers = {}
+for index = 1, 100_000 do
+    arrayOfNumbers[Index] = Index
 end
 ```
 
 ## fastShuffle(array: T & {}, seed: (number | Random)?) -> T
 ```lua
 -- Shuffle with default random
-local Shuffled_1 = fastShuffle(ArrayOfNumbers) 
+local shuffled_1 = fastShuffle(ArrayOfNumbers) 
 -- Shuffle with custom random
-local Shuffled_2 = fastShuffle(ArrayOfNumbers, 12345)
-local Shuffled_3 = fastShuffle(ArrayOfNumbers, Random.new(12345))
+local shuffled_2 = fastShuffle(ArrayOfNumbers, 12345)
+local shuffled_3 = fastShuffle(ArrayOfNumbers, Random.new(12345))
 ```
 
 # Benchmark
 ```lua
-local function Benchmark(TestFunction: () -> (), SymbolFunction: string, Simulation: number): number
+local function benchmark(TestFunction: () -> (), SymbolFunction: string, Simulation: number): number
     local elapsed = os.clock()
     for _ = 1, Simulation do
         TestFunction()
@@ -44,16 +44,16 @@ local function Benchmark(TestFunction: () -> (), SymbolFunction: string, Simulat
     return elapsed
 end
 
-local Randomizer = Random.new()
-local RobloxShuffle = Randomizer.Shuffle
+local randomizer = Random.new()
+local robloxShuffle = randomizer.Shuffle
 
 -- RobloxShuffle // Random.new():Shuffle()
-Benchmark(function()
-    RobloxShuffle(Randomizer, ArrayOfNumbers)
+benchmark(function()
+    robloxShuffle(randomizer, ArrayOfNumbers)
 end, "RobloxShuffle", 10) -- @RobloxShuffle, took: 0.014617400000133784s
 
 -- fastShuffle
-Benchmark(function()
+benchmark(function()
     fastShuffle(ArrayOfNumbers)
 end, "fastShuffler", 10) -- @fastShuffler, took: 0.006270200000017212s
 ```
